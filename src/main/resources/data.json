@@ -1,0 +1,44 @@
+{
+  "id": 1,
+  "producer": {
+    "id": 1,
+    "name": "Producer A",
+    "createdAt": "2023-10-12T06:30:00.000+00:00"
+  },
+  "sellerInfo": {
+    "id": 1,
+    "name": "Seller Info A",
+    "url": "http://sellerinfoA.com",
+    "country": "Country A",
+    "externalId": "External ID 1",
+    "marketplace": {
+      "id": 1,
+      "description": "Marketplace 1"
+    }
+  },
+  "state": "BLOCKLISTED"
+}
+
+// GraphQL Postman Query
+/*
+mutation {
+  sellersByAllFilters(filter:{
+    searchByName:""
+    producerIds:["870eb3e0-6a28-46fd-a763-0f8b47aa8034"]
+    marketplaceIds:[]
+  }, sortBy: MARKETPLACE_ID_DESC, page: {
+    page:0
+    size:1
+  }) {
+  sellerName
+  externalId
+  marketplaceId
+  producerSellerStates {
+  producerId
+  producerName
+  sellerState
+  sellerId
+}
+
+}
+}*/

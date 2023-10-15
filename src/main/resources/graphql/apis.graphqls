@@ -1,0 +1,49 @@
+type Query {
+    sellers:[Sellers]
+}
+
+type Mutation{
+    sellersByAllFilters(filter:SellerFilter,sortBy: SellerSortBy, page: PageInput!):[Sellers]
+#    sellersByAllFilters(sellerFilter:SellerFilter):[Sellers]
+}
+
+input PageInput {
+    page: Int!
+    size: Int!
+}
+
+type Sellers {
+    sellerName: String
+    externalId: String
+    producerSellerStates: [ProducerSellerState]
+    marketplaceId: String
+}
+
+type ProducerSellerState {
+    producerId: ID!
+    producerName: String!
+    sellerState: SellerState!
+    sellerId: ID!
+}
+
+enum SellerState {
+    REGULAR
+    WHITELISTED
+    GREYLISTED
+    BLACKLISTED
+}
+
+enum SellerSortBy {
+    SELLER_INFO_EXTERNAL_ID_ASC,
+    SELLER_INFO_EXTERNAL_ID_DESC,
+    NAME_ASC,
+    NAME_DESC,
+    MARKETPLACE_ID_ASC,
+    MARKETPLACE_ID_DESC,
+}
+
+input SellerFilter {
+    searchByName: String
+    producerIds: [ID]
+    marketplaceIds: [String]
+}
